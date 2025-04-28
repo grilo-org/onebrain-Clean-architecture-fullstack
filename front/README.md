@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Frontend - Projeto Next.js
+Pré-requisitos
+Node.js v18 ou superior
 
-## Getting Started
+Yarn (ou npm)
 
-First, run the development server:
+Instalação
+1 - Instale as dependências:
+yarn
 
-```bash
-npm run dev
-# or
+2 - Rode o servidor de desenvolvimento:
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+O projeto estará disponível em:
+http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Scripts disponíveis
+yarn dev - Inicia o servidor de desenvolvimento
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+yarn build - Cria a versão de produção
 
-## Learn More
+yarn start - Inicia o servidor com a versão de produção
 
-To learn more about Next.js, take a look at the following resources:
+yarn lint - Analisa o código com ESLint
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+yarn lint:fix - Corrige problemas encontrados pelo ESLint
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+yarn test - Executa os testes automatizados
 
-## Deploy on Vercel
+yarn test:watch - Executa os testes no modo watch
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+yarn test:ci - Executa testes para integração contínua
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+yarn test:cov - Executa testes e gera relatório de cobertura
+
+yarn prepare - Configura o Husky para pré-commits
+
+Tecnologias utilizadas
+Next.js
+
+React 19
+
+Tailwind CSS
+
+TypeScript
+
+React Hook Form
+
+Zod
+
+Axios
+
+React Query
+
+Jest + Testing Library
+
+VARIÁVEIS DE AMBIENTE:
+
+NEXT_PUBLIC_BASE_URL=http://localhost:3334

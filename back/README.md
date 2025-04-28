@@ -1,98 +1,83 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+PASSO A PASSO PARA RODAR O BACKEND
+1 - Instale as dependências do projeto:
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+No terminal, dentro da pasta do backend, execute:
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+yarn
 
-## Description
+2 - Instale o Docker na sua máquina (se ainda não estiver instalado).
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+3 - Suba a aplicação localmente:
 
-## Project setup
+yarn start:dev
 
-```bash
-$ yarn install
-```
+4 - Suba o banco de dados PostgreSQL utilizando o Docker:
 
-## Compile and run the project
+docker compose up
 
-```bash
-# development
-$ yarn run start
+(Obs.: se estiver usando Linux, talvez seja necessário adicionar "sudo" no comando: sudo docker compose up)
 
-# watch mode
-$ yarn run start:dev
+5 - Execute as migrações e popule o banco de dados:
 
-# production mode
-$ yarn run start:prod
-```
+npx prisma migrate dev
 
-## Run tests
+npx prisma db push
 
-```bash
-# unit tests
-$ yarn run test
+npx prisma generate
 
-# e2e tests
-$ yarn run test:e2e
+npx prisma db seed
 
-# test coverage
-$ yarn run test:cov
-```
+(opcional) Para abrir o Prisma Studio e visualizar o banco de dados, execute:
 
-## Deployment
+npx prisma studio
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+6 - Rode os testes automatizados:
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+yarn tests
 
-```bash
-$ yarn install -g @nestjs/mau
-$ mau deploy
-```
+VARIÁVEIS DE AMBIENTE
+Certifique-se de adicionar as seguintes variáveis de ambiente no seu .env:
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+DATABASE_URL="postgresql://costacompany:costacompany123@localhost:5432/costacompany?schema=public"
 
-## Resources
+JWT_PRIVATE_KEY="LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0tDQpNSUlFdlFJQkFEQU5CZ2txaGtpRzl3MEJBUUVG
+QUFTQ0JLY3dnZ1NqQWdFQUFvSUJBUURCVkNVcDRnQ0RvVFRrDQpRYWo5MjRhY2NHVWl2SXRSOUF2
+Z3ZIT3FocU9mZndHWkVzYzhhNnN4Qld6Ni8wYTVmSU1vcGhUNEZpODB6OU8yDQpLYkdCQ3ZnbE93
+R0J0NHpLS1V2K25DTkxNVi9ZQVFFYjk5TjJ1Uit0OU5Sd24yK25zcmF6QlVSVmI3ZEpLdFAzDQov
+ZXpjYVhsUTUvYU1pZEtpeEVPdzdoMHpDbnA5T0RKT0d6QjY3UTVXQVhNY3FVQ1R5V2FzcWlqYjZ1
+cDdiUmZJDQpOQzdGYnVJQlJDM3ZtVExpZkZKZTJwV2pwazJwZS9xUFlkRm52enhsc29LRlFuajJs
+ZXVYcGwvUElRTnYxMEVHDQpORkdueThINytTUUpEcnRZSXdaSXA0MUlHL3NKRHBMc01jYTVzODFD
+TG9iOVJ4M3hVVzlLalBPaWo1NnZqUFpuDQprUnY3bWlEekFnTUJBQUVDZ2dFQVF3Y3JnMlBxRGJr
+Y24yN3NhbWRzT2x6MWs1K1BKakRZMVdoQktnUllRbnBFDQpVWkFqSjUyazB2QXdvcTFURmdoSGFS
+WjcrcSttV2tjYi9mSmlxbnpsSC9OZlNGd2RJaEpEV05sRm0xSlpDb2orDQptM1hIQ1VpUjVUd1hV
+NXpUbDI3c3pSQ3NhbnE3TDFEOEFPVTI5QXhWbFdsM0g2N0JLdEdsTG5qQUF1eEZINWg3DQovenhD
+VE8rV1lxcGhoOWYxVnBGTjFxTlBHbFRqa2JtRkJLMTJvbCtWWWhCUEtiRm14NjBwbkhUM1dENzhv
+UjFYDQpXbGdPMG1GL0xUd3ZiWUhtSlltU2J6NnY1ZFkvdmprNC9zVGJnMHhPMHNyWjR1cGpvcG0r
+YlQvZGJzUG5vdGVyDQovbTZpRUV1TlZvNmJ6amZhRTVaQkVTa1ZuSVRUUElkSFo3VFZiL0NNQVFL
+QmdRRGlRNUtrODUxTVYybWhIQkxYDQpGTnc3cnQxTVRwSGFZVzY5ZjYwU1oxdlMwL0hBOEZyeHpt
+bFdWd0FuQnM5bXVrUVhYQnVLTmR6blNRbGQyUDNkDQoxVktrOXRmQ0VBNVFiTEhFcjBwaDFuSkFw
+c3R6ZS9iOGhqTURWdlZCT1Q2aWF3Sko4NDc2MHVZRnFON1JnU1JmDQorS0t4S09iUUs1WXM5SlBt
+N2FGYlE1dC84d0tCZ1FEYXZIOTRLTGZrT0RseTdweWVNZklaSDRyR1JWVHd3RHRBDQphYmE3Tkw3
+OWxTTFNYNzhqa2YyUVBHcXhLWUs3Q2VBZGhST254Ry9IVFZiMUJNTjQwWFFKd2Jjck5ENkNNekxz
+DQpuMmVsZ0Y0Q3J2L2svUlJ0UXR2Sm9ZVWNQRWJNRWJnR0hTMkJaWEhrc0NOY0JNZnp6ME5HUFIy
+Q3lPWjVXcGVzDQpMdzVSU0lBYkFRS0JnQVMwcVJFYksvTlJnaFhpc3BXY2puUURVQUR0UldWSVQz
+aExkbnNDZ1V0aU13M3pNY0VEDQpyUGNwdWd3VnZTeUN4VFhES2FOM09VL3FHZkxFdDRyc2k5cDRj
+OFpLZFRIQkFQVjVPOC9MR1BjMVFOZjNCUXo5DQpjWVFwUTlLR2NVSUpmYk95Q0JBNVlLVlBmTXJZ
+cDd3RFBNYjRkY3h3aTZBRnVpbThXWFcvY3pWM0FvR0FYRGlqDQpDWmNwU09oSG1HUnYxZWE2NnNx
+NHFMVnNoWUNXdXFhWGEwQm0wZVZCNUM2SUdNZ2hmdUZxSGoyaEo1aVhTL3JpDQplWlpCaG1iZUpi
+bVhiR1hxcFg1dDZxSkJSSVd2ajhINVlmYklMQnQ2T2lKVnJXZEY0VEhmUEROUnFoSkNZeG1FDQpL
+UTBMUXQ3Y1daeU9iUVhTbUZlR0RMRUZNdDcyR1p0UlR3WGhOUUVDZ1lFQWhQRDVrWStDTGdYdVNs
+SHY4SnFiDQpjTlZoR3ExdzZsd0JCaVJhbklkdEhidTFVb2E1aDJrM3Z6SHRCcFhzV1BZM011Y0F2
+TDZRQUZXTTNKTmMyVnVBDQpxN01wcFNudmlrSWtuZzRJSkZPUWlaVVdyQ2lQc3Qva2FFb2hBVU5n
+bmw5K043ZkN2VnMydExmbDM0T0pEK3gxDQpMQi9QeTk2NDhiVk9RSHpPdlBPR0hHdz0NCi0tLS0t
+RU5EIFBSSVZBVEUgS0VZLS0tLS0NCg=="
 
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+JWT_PUBLIC_KEY="LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0NCk1JSUJJakFOQmdrcWhraUc5dzBCQVFFRkFBT0NB
+UThBTUlJQkNnS0NBUUVBd1ZRbEtlSUFnNkUwNUVHby9kdUcNCm5IQmxJcnlMVWZRTDRMeHpxb2Fq
+bjM4Qm1STEhQR3VyTVFWcyt2OUd1WHlES0tZVStCWXZOTS9UdGlteGdRcjQNCkpUc0JnYmVNeWls
+TC9wd2pTekZmMkFFQkcvZlRkcmtmcmZUVWNKOXZwN0syc3dWRVZXKzNTU3JUOS8zczNHbDUNClVP
+ZjJqSW5Tb3NSRHNPNGRNd3A2ZlRneVRoc3dldTBPVmdGekhLbEFrOGxtcktvbzIrcnFlMjBYeURR
+dXhXN2kNCkFVUXQ3NWt5NG54U1h0cVZvNlpOcVh2NmoySFJaNzg4WmJLQ2hVSjQ5cFhybDZaZnp5
+RURiOWRCQmpSUnA4dkINCisva2tDUTY3V0NNR1NLZU5TQnY3Q1E2UzdESEd1YlBOUWk2Ry9VY2Q4
+VkZ2U296em9vK2VyNHoyWjVFYis1b2cNCjh3SURBUUFCDQotLS0tLUVORCBQVUJMSUMgS0VZLS0t
+LS0NCg=="
