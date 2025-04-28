@@ -1,0 +1,66 @@
+@baseUrl = http://localhost:3334
+
+@authToken = {{ login.response.body.token }}
+
+# @name login
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+    "email": "user.admin@gmail.com",
+    "password": "admin@1234"
+}
+###
+
+# @name createCustomer
+POST {{baseUrl}}/customers
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+    "name": "CUSTOMER TEST",
+    "email": "customer.test@gmail.com",
+    "cpf": "90888694059",
+    "phone": "11987654321",
+    "zipCode": "12345678",
+    "street": "Rua Exemplo",
+    "number": "123",
+    "complement": "Apto 456",
+    "city": "São Paulo",
+    "state": "SP"
+}
+###
+
+# @name updateCustomer
+PUT {{baseUrl}}/customers/24ed0e50-6f05-4c59-b57a-1f2ce488670c
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+    "name": "Joaquim Medeiros",
+    "email": "joaquim.medeiros@gmail.com",
+    "cpf": "90888694059",
+    "phone": "11987654321",
+    "zipCode": "12345678",
+    "street": "Rua Exemplo",
+    "number": "123",
+    "complement": "Apto 456",
+    "city": "São Paulo",
+    "state": "SP"
+}
+###
+
+# @name fetchCustomers
+GET {{baseUrl}}/customers
+Authorization: Bearer {{authToken}}
+###
+
+# @name deleteCustomer
+DELETE {{baseUrl}}/customers/dca76381-3dda-448d-8582-5ff57e62c61f
+Authorization: Bearer {{authToken}}
+###
+
+# @name fetchCustomerId
+GET {{baseUrl}}/customers/dca76381-3dda-448d-8582-5ff57e62c61f
+Authorization: Bearer {{authToken}}
+###

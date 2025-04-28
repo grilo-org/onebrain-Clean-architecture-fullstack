@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  costa-company-api:
+    image: postgres
+    container_name: costa-company-api
+    restart: always
+    hostname: localhost
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=costacompany
+      - POSTGRES_PASSWORD=costacompany123
+      - POSTGRES_DB=costacompany
+    # volumes:
+    #   - ./data/pg:/data/postgres

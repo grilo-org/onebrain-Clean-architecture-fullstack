@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  costa-company-front:
+    container_name: costa-company-front
+    build:
+      context: .
+      dockerfile: Dockerfile 
+      - '3000:3000'
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:3334 
+    depends_on:
+      - costa-company-api
+    networks:
+      - costa-network
+
+networks:
+  costa-network:
+    external: true

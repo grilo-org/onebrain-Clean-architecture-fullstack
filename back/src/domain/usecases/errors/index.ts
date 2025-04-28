@@ -1,0 +1,6 @@
+export * from './EmailAlreadyInUse.error'
+export * from './DocumentAlreadyInUse.error'
+export * from './InvalidCredentials.error'
+export * from './UserInactive.error'
+export * from './userNotFound.error'
+export * from './CustomerNotFound.error'
