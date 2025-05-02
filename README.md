@@ -1,108 +1,133 @@
-Frontend - Projeto Next.js
-Pré-requisitos
-Node.js v18 ou superior
+# **Next.JS - Documentation**
 
-Yarn (ou npm)
+> ## Pré-requisitos
+>
+> Node.js v18 ou superior
+> Yarn (ou npm)
 
-Instalação
+### Instalação:
+
 1 - Instale as dependências:
-yarn
+`yarn`
 
 2 - Rode o servidor de desenvolvimento:
-yarn dev
+`yarn dev`
 
-O projeto estará disponível em:
-http://localhost:3000
+3 - O projeto estará disponível em:
+`http://localhost:3000`
 
-Scripts disponíveis
-yarn dev - Inicia o servidor de desenvolvimento
+<br/>
 
-yarn build - Cria a versão de produção
+### Variáveis de ambiente:
 
-yarn start - Inicia o servidor com a versão de produção
+`NEXT_PUBLIC_BASE_URL=http://localhost:3334`
 
-yarn lint - Analisa o código com ESLint
+<br/>
+<hr/>
 
-yarn lint:fix - Corrige problemas encontrados pelo ESLint
+> ## Princípios
 
-yarn test - Executa os testes automatizados
+- Single Responsibility Principle (SRP)
+- Open Closed Principle (OCP)
+- Liskov Substitution Principle (LSP)
+- Interface Segregation Principle (ISP)
+- Dependency Inversion Principle (DIP)
+- Separation of Concerns (SOC)
+- Don't Repeat Yourself (DRY)
+- You Aren't Gonna Need It (YAGNI)
+- Keep It Simple, Silly (KISS)
+- Composition Over Inheritance
+- Small Commits
 
-yarn test:watch - Executa os testes no modo watch
+> ## Design Patterns
 
-yarn test:ci - Executa testes para integração contínua
+- Factory
+- Adapter
+- Composite
+- Decorator
+- Dependency Injection
+- Composition Root
+- Builder
+- Proxy
 
-yarn test:cov - Executa testes e gera relatório de cobertura
+> ## Metodologias e Designs
 
-yarn prepare - Configura o Husky para pré-commits
+- TDD
+- Clean Architecture
+- DDD
+- Reactive Programming
+- Responsive Layout
+- Conventional Commits
+- Modular Design
+- Dependency Diagrams
+- Use Cases
 
-Tecnologias utilizadas
-Next.js
+> ## Bibliotecas e Ferramentas
 
-React 19
+- Typescript
+- React
+- Next.js
+- Jest
+- Axios
+- Git
+- Yarn
+- Zod
+- Tailwind
+- React-Hook-Form
+- Husky
+- Lint Staged
+- Eslint
 
-Tailwind CSS
+> ## Features do Typescript
 
-TypeScript
+- POO Avançado
+- Interface
+- Type Alias
+- Module
+- Utility Types
+- Modularização de Paths
+- Build
+- Generics
 
-React Hook Form
+> ## Features de Testes
 
-Zod
+- Testes Unitários
+- Testes de Integração
+- Mocks
 
-Axios
+<br/>
+<hr/>
+<br/>
 
-React Query
+# **Nest.JS - Documentation**
 
-Jest + Testing Library
+> ## Pré-requisitos
+>
+> Node.js v18 ou superior
+> Yarn (ou npm)
 
-VARIÁVEIS DE AMBIENTE:
+### Instalação:
 
-NEXT_PUBLIC_BASE_URL=http://localhost:3334
+1 - Instale as dependências:
+`yarn`
 
-#################################################
+2 - Rode o servidor de desenvolvimento:
+`yarn start:dev`
 
-PASSO A PASSO PARA RODAR O BACKEND
-1 - Instale as dependências do projeto:
+3 - O projeto estará disponível em:
+`http://localhost:3334`
 
-No terminal, dentro da pasta do backend, execute:
+<br/>
 
-yarn
+### Variáveis de ambiente:
 
-2 - Instale o Docker na sua máquina (se ainda não estiver instalado).
+- `DATABASE_URL="postgresql://costacompany:costacompany123@localhost:5432/costacompany?schema=public`
+  <br/>
+- `REDIS_PASSWORD="redis123456"`
 
-3 - Suba a aplicação localmente:
+  <br/>
 
-yarn start:dev
-
-4 - Suba o banco de dados PostgreSQL utilizando o Docker:
-
-docker compose up
-
-(Obs.: se estiver usando Linux, talvez seja necessário adicionar "sudo" no comando: sudo docker compose up)
-
-5 - Execute as migrações e popule o banco de dados:
-
-npx prisma migrate dev
-
-npx prisma db push
-
-npx prisma generate
-
-npx prisma db seed
-
-(opcional) Para abrir o Prisma Studio e visualizar o banco de dados, execute:
-
-npx prisma studio
-
-6 - Rode os testes automatizados:
-
-yarn tests
-
-VARIÁVEIS DE AMBIENTE
-Certifique-se de adicionar as seguintes variáveis de ambiente no seu .env:
-
-DATABASE_URL="postgresql://costacompany:costacompany123@localhost:5432/costacompany?schema=public"
-
-JWT_PRIVATE_KEY="LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0tDQpNSUlFdlFJQkFEQU5CZ2txaGtpRzl3MEJBUUVG
+- `JWT_PRIVATE_KEY="LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0tDQpNSUlFdlFJQkFEQU5CZ2txaGtpRzl3MEJBUUVG
 QUFTQ0JLY3dnZ1NqQWdFQUFvSUJBUURCVkNVcDRnQ0RvVFRrDQpRYWo5MjRhY2NHVWl2SXRSOUF2
 Z3ZIT3FocU9mZndHWkVzYzhhNnN4Qld6Ni8wYTVmSU1vcGhUNEZpODB6OU8yDQpLYkdCQ3ZnbE93
 R0J0NHpLS1V2K25DTkxNVi9ZQVFFYjk5TjJ1Uit0OU5Sd24yK25zcmF6QlVSVmI3ZEpLdFAzDQov
@@ -132,9 +157,11 @@ UTBMUXQ3Y1daeU9iUVhTbUZlR0RMRUZNdDcyR1p0UlR3WGhOUUVDZ1lFQWhQRDVrWStDTGdYdVNs
 SHY4SnFiDQpjTlZoR3ExdzZsd0JCaVJhbklkdEhidTFVb2E1aDJrM3Z6SHRCcFhzV1BZM011Y0F2
 TDZRQUZXTTNKTmMyVnVBDQpxN01wcFNudmlrSWtuZzRJSkZPUWlaVVdyQ2lQc3Qva2FFb2hBVU5n
 bmw5K043ZkN2VnMydExmbDM0T0pEK3gxDQpMQi9QeTk2NDhiVk9RSHpPdlBPR0hHdz0NCi0tLS0t
-RU5EIFBSSVZBVEUgS0VZLS0tLS0NCg=="
+RU5EIFBSSVZBVEUgS0VZLS0tLS0NCg=="`
 
-JWT_PUBLIC_KEY="LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0NCk1JSUJJakFOQmdrcWhraUc5dzBCQVFFRkFBT0NB
+<br/>
+
+- `JWT_PUBLIC_KEY="LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0NCk1JSUJJakFOQmdrcWhraUc5dzBCQVFFRkFBT0NB
 UThBTUlJQkNnS0NBUUVBd1ZRbEtlSUFnNkUwNUVHby9kdUcNCm5IQmxJcnlMVWZRTDRMeHpxb2Fq
 bjM4Qm1STEhQR3VyTVFWcyt2OUd1WHlES0tZVStCWXZOTS9UdGlteGdRcjQNCkpUc0JnYmVNeWls
 TC9wd2pTekZmMkFFQkcvZlRkcmtmcmZUVWNKOXZwN0syc3dWRVZXKzNTU3JUOS8zczNHbDUNClVP
@@ -142,4 +169,73 @@ ZjJqSW5Tb3NSRHNPNGRNd3A2ZlRneVRoc3dldTBPVmdGekhLbEFrOGxtcktvbzIrcnFlMjBYeURR
 dXhXN2kNCkFVUXQ3NWt5NG54U1h0cVZvNlpOcVh2NmoySFJaNzg4WmJLQ2hVSjQ5cFhybDZaZnp5
 RURiOWRCQmpSUnA4dkINCisva2tDUTY3V0NNR1NLZU5TQnY3Q1E2UzdESEd1YlBOUWk2Ry9VY2Q4
 VkZ2U296em9vK2VyNHoyWjVFYis1b2cNCjh3SURBUUFCDQotLS0tLUVORCBQVUJMSUMgS0VZLS0t
-LS0NCg=="
+LS0NCg=="`
+
+<br/>
+<hr/>
+
+> ## Princípios
+
+- Single Responsibility Principle (SRP)
+- Open Closed Principle (OCP)
+- Liskov Substitution Principle (LSP)
+- Interface Segregation Principle (ISP)
+- Dependency Inversion Principle (DIP)
+- Separation of Concerns (SOC)
+- Don't Repeat Yourself (DRY)
+- You Aren't Gonna Need It (YAGNI)
+- Keep It Simple, Silly (KISS)
+- Composition Over Inheritance
+- Small Commits
+
+> ## Design Patterns
+
+- Factory
+- Adapter
+- Composite
+- Decorator
+- Dependency Injection
+- Composition Root
+- Builder
+- Proxy
+
+> ## Metodologias e Designs
+
+- TDD
+- Clean Architecture
+- DDD
+- Reactive Programming
+- Responsive Layout
+- Conventional Commits
+- Modular Design
+- Dependency Diagrams
+- Use Cases
+
+> ## Bibliotecas e Ferramentas
+
+- Typescript
+- bcryptjs
+- Nest.js
+- Jest
+- Axios
+- Git
+- Yarn
+- Zod
+- bcryptjs
+
+> ## Features do Typescript
+
+- POO Avançado
+- Interface
+- Type Alias
+- Module
+- Utility Types
+- Modularização de Paths
+- Build
+- Generics
+
+> ## Features de Testes
+
+- Testes Unitários
+- Testes de Integração
+- Mocks
