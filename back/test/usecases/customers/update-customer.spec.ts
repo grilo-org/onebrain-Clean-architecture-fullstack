@@ -1,8 +1,8 @@
 import { InMemoryCustomersRepository } from "test/repository/in-memory-customers-repository";
 import { UpdateCustomerUseCase } from "src/domain/usecases/customers/update-customers";
 import { makeCustomer } from "test/factory/make-customers";
-import { EmailAlreadyInUseError } from "src/domain/usecases/errors/EmailAlreadyInUse.error";
-import { CustomerNotFoundError, DocumentAlreadyInUseError } from "src/domain/usecases/errors";
+import { EmailAlreadyInUseError } from "src/domain/errors/EmailAlreadyInUse.error";
+import { CustomerNotFoundError, DocumentAlreadyInUseError } from "src/domain/errors";
 
 let inMemoryCustomersRepository: InMemoryCustomersRepository;
 let sut: UpdateCustomerUseCase;

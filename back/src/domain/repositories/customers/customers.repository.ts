@@ -1,4 +1,4 @@
-import { Customer } from "src/domain/models/customers.model"
+import { Customer } from "../../models/entity/customer.entity"
 
 export abstract class CustomersRepository {
     abstract create(customer: Customer, createdById: string): Promise<Customer>

@@ -1,6 +1,6 @@
-import Header from '@/components/Header/Header'
 import ProtectedRoute from '@/infrastructure/auth/ProtectedRoute'
-import { DashboardView } from '@/presentation/Dashboard/dashboard.view'
+import { Header } from '@/presentation/components/Header'
+import { DashboardView } from '@/presentation/views/Dashboard/dashboard.view'
 
 export default function DashboardPage() {
   return (

@@ -1,7 +1,15 @@
 import axios, { AxiosInstance } from 'axios'
 
 import { BASE_URL } from '@/commons/config'
-import { HttpRequest, HttpStatusCode, IHttpClient } from '@/infrastructure/api/HttpClientContract'
+import {
+  HttpError,
+  HttpRequest,
+  HttpStatusCode,
+  IHttpClient,
+  NotFoundError,
+  ServerError,
+  UnauthorizedError,
+} from '@/infrastructure/api/HttpClientContract'
 
 const DEFAULT_BASE_URL = BASE_URL || 'http://localhost:3334'
 
@@ -36,14 +44,23 @@ export class HttpClient implements IHttpClient {
         method,
         headers: { ...this.defaultHeaders, ...headers },
         data: body,
+        withCredentials: true,
       })
 
       return data
     } catch (err) {
       if (axios.isAxiosError(err)) {
         const status = err.response?.status || HttpStatusCode.serverError
-        const message = err.response?.data || err.message
-        throw new Error(`Request error ${status}: ${message}`)
+        switch (status) {
+          case HttpStatusCode.unauthorized:
+            throw new UnauthorizedError()
+          case HttpStatusCode.notFound:
+            throw new NotFoundError()
+          case HttpStatusCode.serverError:
+            throw new ServerError()
+          default:
+            throw new HttpError(status, typeof err.response?.data === 'string' ? err.response.data : err.message)
+        }
       }
       throw new Error(`Unexpected error: ${(err as Error).message}`)
     }

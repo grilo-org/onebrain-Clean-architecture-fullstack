@@ -1,4 +1,5 @@
-import { CreateUserData, ICreateUserService, UserResponse } from '@/domain/models/ICreateUserService'
+import { ValidationError } from '@/domain/errors/ValidationError'
+import { CreateUserData, ICreateUserService, UserResponse } from '@/domain/services/ICreateUserService'
 import { HttpMethod, IHttpClient } from '@/infrastructure/api/HttpClientContract'
 
 export class CreateUserService implements ICreateUserService {
@@ -14,7 +15,7 @@ export class CreateUserService implements ICreateUserService {
 
       return response
     } catch (error) {
-      throw new Error('Falha ao criar usuário. Verifique os dados fornecidos.')
+      throw new ValidationError('Falha ao criar usuário. Verifique os dados fornecidos.')
     }
   }
 }

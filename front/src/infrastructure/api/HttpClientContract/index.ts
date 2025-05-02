@@ -30,3 +30,31 @@ export type HttpRequest<TBody> = {
 export interface IHttpClient {
   sendRequest: <TResponse, TBody = unknown>(request: HttpRequest<TBody>) => Promise<TResponse>
 }
+
+export class HttpError extends Error {
+  constructor(
+    public statusCode: HttpStatusCode,
+    message: string
+  ) {
+    super(message)
+    this.name = 'HttpError'
+  }
+}
+
+export class UnauthorizedError extends HttpError {
+  constructor() {
+    super(HttpStatusCode.unauthorized, 'Unauthorized access. Please log in.')
+  }
+}
+
+export class NotFoundError extends HttpError {
+  constructor() {
+    super(HttpStatusCode.notFound, 'The requested resource was not found.')
+  }
+}
+
+export class ServerError extends HttpError {
+  constructor() {
+    super(HttpStatusCode.serverError, 'An internal server error occurred. Please try again later.')
+  }
+}

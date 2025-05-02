@@ -1,7 +1,8 @@
-import { Customer, CustomerProps } from 'src/domain/models/customers.model'
+import { PrismaCustomerMapper } from '@/data/prisma/customers/mappers/customers.mapper'
+import { PrismaService } from '@/data/prisma.service'
+import { Customer, CustomerProps } from '@/domain/models/entity/customer.entity'
 import { Injectable } from '@nestjs/common'
-import { PrismaService } from 'src/infra/database/prisma/prisma.service'
-import { PrismaCustomerMapper } from 'src/infra/database/prisma/customers/mappers/customers.mapper'
+
 import { Prisma } from '@prisma/client'
 
 export function makeCustomer(override: Partial<CustomerProps> = {}) {

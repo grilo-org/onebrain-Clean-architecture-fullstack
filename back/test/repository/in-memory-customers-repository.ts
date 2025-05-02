@@ -1,6 +1,7 @@
 import { Injectable } from "@nestjs/common";
-import { Customer } from "src/domain/models/customers.model";
-import { CustomersRepository } from "src/domain/repositories/customers/customers.repository";
+import { Customer } from "../../src/domain/models/entity/customer.entity";
+import { CustomersRepository } from "../../src/domain/repositories/customers/customers.repository";
+
 
 @Injectable()
 export class InMemoryCustomersRepository implements CustomersRepository {

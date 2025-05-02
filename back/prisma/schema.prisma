@@ -36,7 +36,7 @@ model Customer {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  createdById String   // <- SEM '?', obrigatório!
+  createdById String   
   createdBy   User     @relation(fields: [createdById], references: [id], onDelete: Cascade)
 
   @@map("customers")

@@ -1,16 +1,9 @@
-import { Either, left, right } from "src/core/either";
-import { CustomerNotFoundError } from "../errors";
-import { CustomersRepository } from "src/domain/repositories/customers/customers.repository";
 import { Injectable } from "@nestjs/common";
-
-type DeleteCustomerUseCaseResponse = Either<Error, {
-  message: string
-}>
-
-type DeleteCustomerUseCaseRequest = {
-  id: string 
-  createdById: string
-}
+import { left, right } from "@/core/either";
+import { CustomerNotFoundError } from "@/domain/errors";
+import { CustomersRepository } from "@/domain/repositories/customers/customers.repository";
+import { DeleteCustomerUseCaseResponse } from "@/domain/models/response/customer";
+import { DeleteCustomerUseCaseRequest } from "@/domain/models/request/customer";
 
 @Injectable()
 export class DeleteCustomerUseCase {

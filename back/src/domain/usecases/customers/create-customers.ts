@@ -1,57 +1,32 @@
-import { Injectable } from '@nestjs/common';
-import { Either, left, right } from 'src/core/either';
-import { Customer } from 'src/domain/models/customers.model';
-import { CustomersRepository } from 'src/domain/repositories/customers/customers.repository';
-import { DocumentAlreadyInUseError } from '../errors';
-import { EmailAlreadyInUseError } from '../errors/EmailAlreadyInUse.error';
+import { Injectable } from "@nestjs/common";
+import { left, right } from "@/core/either";
+import { Customer } from "@/domain/models/entity/customer.entity";
+import { DocumentAlreadyInUseError, EmailAlreadyInUseError } from "@/domain/errors";
+import { CustomersRepository } from "@/domain/repositories/customers/customers.repository";
+import { CreateCustomerUseCaseResponse } from "@/domain/models/response/customer";
+import { CreateCustomerUseCaseRequest } from "@/domain/models/request/customer";
 
-type CreateCustomerUseCaseResponse = Either<
-  Error,
-  {
-    customer: {
-      id: string;
-      name: string;
-      email: string;
-    };
-  }
->;
-
-type CreateCustomerUseCaseRequest = {
-  name: string;
-  email: string;
-  cpf: string;
-  phone: string;
-  zipCode: string;
-  street: string;
-  number: string;
-  complement?: string;
-  city: string;
-  state?: string;
-  createdById: string;
-};
 
 @Injectable()
 export class CreateCustomerUseCase {
-  constructor(private readonly customersRepository: CustomersRepository) {}
+  constructor(
+    private readonly customersRepository: CustomersRepository,
+  ) {}
 
-  async execute(
-    input: CreateCustomerUseCaseRequest,
-  ): Promise<CreateCustomerUseCaseResponse> {
-    const customerWithSameEmail = await this.customersRepository.findByEmail(
-      input.email,
-    );
+  async execute(input: CreateCustomerUseCaseRequest): Promise<CreateCustomerUseCaseResponse> {
+  
+    const customerWithSameEmail = await this.customersRepository.findByEmail(input.email)
 
     if (customerWithSameEmail) {
-      return left(new EmailAlreadyInUseError());
+      return left(new EmailAlreadyInUseError())
     }
 
-    const customerWithSameCpf = await this.customersRepository.findByCpf(
-      input.cpf,
-    );
+    const customerWithSameCpf = await this.customersRepository.findByCpf(input.cpf)
 
     if (customerWithSameCpf) {
-      return left(new DocumentAlreadyInUseError());
+      return left(new DocumentAlreadyInUseError())
     }
+
 
     const customer = Customer.create({
       name: input.name,
@@ -63,18 +38,18 @@ export class CreateCustomerUseCase {
       number: input.number,
       complement: input.complement,
       city: input.city,
-      state: input.state ?? '',
-      createdById: input.createdById,
-    });
+      state: input.state,
+      createdById: input.createdById
+    })
 
-    await this.customersRepository.create(customer, input.createdById);
+    await this.customersRepository.create(customer, input.createdById)
 
     return right({
       customer: {
         id: customer.id.toString(),
         name: customer.name,
-        email: customer.email,
-      },
-    });
+        email: customer.email
+      }
+    })
   }
 }

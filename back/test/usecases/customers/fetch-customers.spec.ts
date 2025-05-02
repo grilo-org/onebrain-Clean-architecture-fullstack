@@ -1,58 +1,74 @@
-import { CACHE_MANAGER } from '@nestjs/cache-manager';
-import { Test, TestingModule } from '@nestjs/testing';
-import { Cache } from 'cache-manager';
-import { FetchCustomersUseCase } from 'src/domain/usecases/customers/fetch-customers';
-import { InMemoryCustomersRepository } from 'test/repository/in-memory-customers-repository';
+import { InMemoryCustomersRepository } from "test/repository/in-memory-customers-repository";
+import { FetchCustomersUseCase } from "src/domain/usecases/customers/fetch-customers";
+import { makeCustomer } from "test/factory/make-customers";
 
 let inMemoryCustomersRepository: InMemoryCustomersRepository;
 let sut: FetchCustomersUseCase;
-let cacheManager: Cache;
 
-beforeEach(async () => {
-  const module: TestingModule = await Test.createTestingModule({
-    providers: [
-      {
-        provide: CACHE_MANAGER,
-        useValue: {
-          get: jest.fn(),
-          set: jest.fn(),
-        },
-      },
-    ],
-  }).compile();
+describe('Fetch Customers UseCase', () => {
+  beforeEach(() => {
+    inMemoryCustomersRepository = new InMemoryCustomersRepository();
+    sut = new FetchCustomersUseCase(inMemoryCustomersRepository);
+  });
 
-  cacheManager = module.get<Cache>(CACHE_MANAGER);
-  inMemoryCustomersRepository = new InMemoryCustomersRepository();
-  sut = new FetchCustomersUseCase(inMemoryCustomersRepository, cacheManager);
-});
+  it('should be able to fetch all customers', async () => {
+    const createdById1 = 'user-1';
+    const createdById2 = 'user-2';
+    
+    const customer1 = makeCustomer({
+      name: 'Customer 1',
+      email: 'customer1@example.com',
+      createdById: createdById1
+    });
+    
+    const customer2 = makeCustomer({
+      name: 'Customer 2',
+      email: 'customer2@example.com',
+      createdById: createdById1
+    });
 
-it('should return customers from cache if available', async () => {
-  const cachedCustomers = [
-    { name: 'Cached Customer 1', email: 'cached1@example.com' },
-    { name: 'Cached Customer 2', email: 'cached2@example.com' },
-  ];
+    const customer3 = makeCustomer({
+      name: 'Customer 3',
+      email: 'customer3@example.com',
+      createdById: createdById2
+    });
+    
+    await inMemoryCustomersRepository.create(customer1, createdById1);
+    await inMemoryCustomersRepository.create(customer2, createdById1);
+    await inMemoryCustomersRepository.create(customer3, createdById2);
 
-  jest.spyOn(cacheManager, 'get').mockResolvedValueOnce(cachedCustomers);
+    const result = await sut.execute();
 
-  const result = await sut.execute();
+    expect(result.isRight()).toBe(true);
+    
+    if (result.isRight()) {
+      expect(result.value).toHaveLength(3);
+      expect(result.value).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            name: 'Customer 1',
+            email: 'customer1@example.com'
+          }),
+          expect.objectContaining({
+            name: 'Customer 2',
+            email: 'customer2@example.com'
+          }),
+          expect.objectContaining({
+            name: 'Customer 3',
+            email: 'customer3@example.com'
+          })
+        ])
+      );
+    }
+  });
 
-  expect(result.isRight()).toBe(true);
+  it('should return an empty array when there are no customers', async () => {
+    const result = await sut.execute();
 
-  if (result.isRight()) {
-    expect(result.value).toHaveLength(2);
-    expect(result.value).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          name: 'Cached Customer 1',
-          email: 'cached1@example.com',
-        }),
-        expect.objectContaining({
-          name: 'Cached Customer 2',
-          email: 'cached2@example.com',
-        }),
-      ]),
-    );
-  }
-
-  expect(cacheManager.get).toHaveBeenCalledWith('customers:all');
-});
+    expect(result.isRight()).toBe(true);
+    
+    if (result.isRight()) {
+      expect(result.value).toHaveLength(0);
+    }
+  });
+}); 

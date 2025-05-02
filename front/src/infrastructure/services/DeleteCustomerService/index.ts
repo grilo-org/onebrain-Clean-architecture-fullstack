@@ -1,4 +1,5 @@
-import { IDeleteCustomerService } from '@/domain/models/IDeleteCustomerService'
+import { ValidationError } from '@/domain/errors/ValidationError'
+import { IDeleteCustomerService } from '@/domain/services/IDeleteCustomerService'
 import { HttpMethod, IHttpClient } from '@/infrastructure/api/HttpClientContract'
 
 export class DeleteCustomerService implements IDeleteCustomerService {
@@ -14,7 +15,7 @@ export class DeleteCustomerService implements IDeleteCustomerService {
         },
       })
     } catch (error) {
-      throw new Error('Falha ao deletar customer. Tente novamente mais tarde.')
+      throw new ValidationError('Falha ao deletar customer. Tente novamente mais tarde.')
     }
   }
 }

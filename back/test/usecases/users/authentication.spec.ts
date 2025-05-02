@@ -1,9 +1,9 @@
 import { InMemoryUsersRepository } from "test/repository/in-memory-users-repository";
 import { AuthenticationUseCase } from "src/domain/usecases/users/authentication";
 import { makeUser } from "test/factory/make-users";
-import { InvalidCredentialsError } from "src/domain/usecases/errors/InvalidCredentials.error";
-import { UserNotFoundError } from "src/domain/usecases/errors/userNotFound.error";
-import { UserInactiveError } from "src/domain/usecases/errors/UserInactive.error";
+import { InvalidCredentialsError } from "src/domain/errors/InvalidCredentials.error";
+import { UserNotFoundError } from "src/domain/errors/userNotFound.error";
+import { UserInactiveError } from "src/domain/errors/UserInactive.error";
 import { InMemoryEncrypter, InMemoryHashComparer } from "test/repository/in-memory-cryptography";
 
 let inMemoryUsersRepository: InMemoryUsersRepository;

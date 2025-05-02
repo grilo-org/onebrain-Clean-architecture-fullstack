@@ -1,7 +1,7 @@
 import { InMemoryCustomersRepository } from "test/repository/in-memory-customers-repository";
 import { DeleteCustomerUseCase } from "src/domain/usecases/customers/delete-customers";
 import { makeCustomer } from "test/factory/make-customers";
-import { CustomerNotFoundError } from "src/domain/usecases/errors";
+import { CustomerNotFoundError } from "src/domain/errors";
 
 let inMemoryCustomersRepository: InMemoryCustomersRepository;
 let sut: DeleteCustomerUseCase;

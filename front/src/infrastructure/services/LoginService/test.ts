@@ -18,7 +18,7 @@ describe('LoginService', () => {
       method: HttpMethod.POST,
       body: credentials,
     })
-    expect(result).toBe('mock-token')
+    expect(result).toEqual({ token: 'mock-token' })
   })
 
   it('should throw an error if the request fails', async () => {

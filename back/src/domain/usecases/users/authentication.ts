@@ -1,25 +1,11 @@
-import { Either, left, right } from "src/core/either";
-import { Encrypter } from "src/domain/repositories/cryptography/encrypter";
-import { UsersRepository } from "src/domain/repositories/users/users.repository";
-import { UserNotFoundError } from "../errors/userNotFound.error";
-import { InvalidCredentialsError } from "../errors/InvalidCredentials.error";
-import { HashComparer } from "src/domain/repositories/cryptography/hash-comparer";
-import { UserInactiveError } from "../errors/UserInactive.error";
 import { Injectable } from "@nestjs/common";
+import { left, right } from "@/core/either";
+import { UsersRepository } from "@/domain/repositories/users/users.repository";
+import { AuthenticationUseCaseResponse } from "@/domain/models/response/user/authentication-user.response";
+import { AuthenticationUseCaseRequest } from "@/domain/models/request/user/authentication-user.request";
+import { InvalidCredentialsError, UserInactiveError, UserNotFoundError } from "@/domain/errors";
+import { Encrypter, HashComparer } from "@/domain/repositories/cryptography";
 
-type AuthenticationUseCaseResponse = Either<Error, {
-    token: string
-    user: {
-        id: string
-        name: string
-        email: string
-    }
-}>
-
-type AuthenticationUseCaseRequest = {
-    email: string
-    password: string
-}
 
 @Injectable()
 export class AuthenticationUseCase {

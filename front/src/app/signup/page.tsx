@@ -1,5 +1,5 @@
 import ProtectedRoute from '@/infrastructure/auth/ProtectedRoute'
-import { SignUpView } from '@/presentation/SignUp'
+import { SignUpView } from '@/presentation/views/SignUp'
 
 export default function SignUpPage() {
   return (

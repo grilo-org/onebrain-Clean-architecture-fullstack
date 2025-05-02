@@ -1,5 +1,5 @@
 import ProtectedRoute from '@/infrastructure/auth/ProtectedRoute'
-import { CreateCustomerView } from '@/presentation/CreateCustomer'
+import { CreateCustomerView } from '@/presentation/views/CreateCustomer'
 
 const CreateCustomerPage = () => {
   return (

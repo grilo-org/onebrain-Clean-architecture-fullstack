@@ -32,4 +32,9 @@ if (typeof global.TextDecoder === 'undefined') {
 
 afterEach(() => {
   jest.clearAllMocks()
+  localStorage.clear()
+})
+
+beforeEach(() => {
+  localStorage.setItem('access_token', 'mock-token')
 })

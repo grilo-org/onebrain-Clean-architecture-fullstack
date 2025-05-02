@@ -5,7 +5,8 @@
     "types": ["jest", "node"],
     "paths": {
       "test/*": ["./test/*"],
-      "src/*": ["./src/*"]
+      "src/*": ["./src/*"],
+      "@/*": ["./src/*"]
     }
   },
   "include": ["src/**/*", "test/**/*"]

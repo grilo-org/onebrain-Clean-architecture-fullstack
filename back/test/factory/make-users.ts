@@ -1,7 +1,8 @@
-import { User, UserProps } from 'src/domain/models/user.model'
+import { PrismaService } from '@/data/prisma.service';
+import { PrismaUserMapper } from '@/data/prisma/users/mappers/users.mapper';
+import { User, UserProps } from '@/domain/models/entity/user.entity'
 import { Injectable } from '@nestjs/common'
-import { PrismaService } from 'src/infra/database/prisma/prisma.service'
-import { PrismaUserMapper } from 'src/infra/database/prisma/users/mappers/users.mapper'
+
 import { Prisma } from '@prisma/client'
 
 export function makeUser(override: Partial<UserProps> = {}) {

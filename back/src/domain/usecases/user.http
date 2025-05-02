@@ -7,8 +7,8 @@ POST {{baseUrl}}/auth/login
 Content-Type: application/json
 
 {
-    "email": "user.admin@gmail.com",
-    "password": "admin@1234"
+    "email": "deyvison.costa5@gmail.com",
+    "password": "Deyvison@1234"
 }
 ###
 
@@ -17,7 +17,7 @@ POST {{baseUrl}}/users
 Content-Type: application/json
 
 {
-    "name": "user admin",
-    "email": "user.admin@gmail.com",
-    "password": "admin@1234"
+    "name": "Deyvison Costa4",
+    "email": "deyvison.costa5@gmail.com",
+    "password": "Deyvison@1234"
 }

@@ -1,5 +1,5 @@
 import ProtectedRoute from '@/infrastructure/auth/ProtectedRoute'
-import { LoginView } from '@/presentation/Login/login.view'
+import { LoginView } from '@/presentation/views/Login/login.view'
 
 export default function Page() {
   return (

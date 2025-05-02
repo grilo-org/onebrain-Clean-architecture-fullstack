@@ -1,23 +1,11 @@
-import { Either, left, right } from "src/core/either";
-import { UsersRepository } from "src/domain/repositories/users/users.repository";
-import { User } from "src/domain/models/user.model";
-import { HashGenerator } from "src/domain/repositories/cryptography/hash-generator";
-import { EmailAlreadyInUseError } from "../errors/EmailAlreadyInUse.error";
 import { Injectable } from '@nestjs/common';
-
-type CreateUserUseCaseResponse = Either<Error, {
-  user: {
-    id: string
-    name: string
-    email: string
-  }
-}>
-
-type CreateUserUseCaseRequest = {
-  name: string
-  email: string
-  password: string
-}
+import { left, right } from "@/core/either";
+import { UsersRepository } from "@/domain/repositories/users/users.repository";
+import { User } from "@/domain/models/entity/user.entity";
+import { HashGenerator } from "@/domain/repositories/cryptography/hash-generator";
+import { EmailAlreadyInUseError } from "@/domain/errors";
+import { CreateUserUseCaseRequest } from "@/domain/models/request/user/create-user.request";
+import { CreateUserUseCaseResponse } from "@/domain/models/response/user/create-user.response";
 
 @Injectable()
 export class CreateUserUseCase {

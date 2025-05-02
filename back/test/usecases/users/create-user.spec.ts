@@ -1,7 +1,7 @@
 import { InMemoryUsersRepository } from "test/repository/in-memory-users-repository";
 import { CreateUserUseCase } from "src/domain/usecases/users/create-users";
 import { makeUser } from "test/factory/make-users";
-import { EmailAlreadyInUseError } from "src/domain/usecases/errors/EmailAlreadyInUse.error";
+import { EmailAlreadyInUseError } from "src/domain/errors/EmailAlreadyInUse.error";
 import { InMemoryHashGenerator } from "test/repository/in-memory-cryptography";
 
 let inMemoryUsersRepository: InMemoryUsersRepository;
