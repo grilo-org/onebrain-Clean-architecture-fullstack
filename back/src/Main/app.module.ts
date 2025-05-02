@@ -8,7 +8,6 @@ import { EnvService } from 'src/infra/env/env.service';
 import { CustomersModule } from 'src/presentation/customers/customers.module';
 import { UsersModule } from 'src/presentation/users/users.module';
 
-
 @Module({
   imports: [
     CacheModule.register({
@@ -16,6 +15,7 @@ import { UsersModule } from 'src/presentation/users/users.module';
       host: 'localhost',
       port: 6379,
       ttl: 60,
+      password: process.env.REDIS_PASSWORD,
     }),
     ConfigModule.forRoot({
       validate: (env) => envSchema.parse(env),

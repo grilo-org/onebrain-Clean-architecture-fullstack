@@ -1,59 +1,96 @@
-Frontend - Projeto Next.js
-Pré-requisitos
-Node.js v18 ou superior
+# **Next.JS - Documentation**
 
-Yarn (ou npm)
+> ## Pré-requisitos
+>
+> Node.js v18 ou superior
+> Yarn (ou npm)
 
-Instalação
+### Instalação:
+
 1 - Instale as dependências:
-yarn
+`yarn`
 
 2 - Rode o servidor de desenvolvimento:
-yarn dev
+`yarn dev`
 
-O projeto estará disponível em:
-http://localhost:3000
+3 - O projeto estará disponível em:
+`http://localhost:3000`
 
-Scripts disponíveis
-yarn dev - Inicia o servidor de desenvolvimento
+<br/>
 
-yarn build - Cria a versão de produção
+### Variáveis de ambiente:
 
-yarn start - Inicia o servidor com a versão de produção
+`NEXT_PUBLIC_BASE_URL=http://localhost:3334`
 
-yarn lint - Analisa o código com ESLint
+<br/>
+<hr/>
 
-yarn lint:fix - Corrige problemas encontrados pelo ESLint
+> ## Princípios
 
-yarn test - Executa os testes automatizados
+- Single Responsibility Principle (SRP)
+- Open Closed Principle (OCP)
+- Liskov Substitution Principle (LSP)
+- Interface Segregation Principle (ISP)
+- Dependency Inversion Principle (DIP)
+- Separation of Concerns (SOC)
+- Don't Repeat Yourself (DRY)
+- You Aren't Gonna Need It (YAGNI)
+- Keep It Simple, Silly (KISS)
+- Composition Over Inheritance
+- Small Commits
 
-yarn test:watch - Executa os testes no modo watch
+> ## Design Patterns
 
-yarn test:ci - Executa testes para integração contínua
+- Factory
+- Adapter
+- Composite
+- Decorator
+- Dependency Injection
+- Composition Root
+- Builder
+- Proxy
 
-yarn test:cov - Executa testes e gera relatório de cobertura
+> ## Metodologias e Designs
 
-yarn prepare - Configura o Husky para pré-commits
+- TDD
+- Clean Architecture
+- DDD
+- Reactive Programming
+- Responsive Layout
+- Conventional Commits
+- Modular Design
+- Dependency Diagrams
+- Use Cases
 
-Tecnologias utilizadas
-Next.js
+> ## Bibliotecas e Ferramentas
 
-React 19
+- Typescript
+- React
+- Next.js
+- Jest
+- Axios
+- Git
+- Yarn
+- Zod
+- Tailwind
+- React-Hook-Form
+- Husky
+- Lint Staged
+- Eslint
 
-Tailwind CSS
+> ## Features do Typescript
 
-TypeScript
+- POO Avançado
+- Interface
+- Type Alias
+- Module
+- Utility Types
+- Modularização de Paths
+- Build
+- Generics
 
-React Hook Form
+> ## Features de Testes
 
-Zod
-
-Axios
-
-React Query
-
-Jest + Testing Library
-
-VARIÁVEIS DE AMBIENTE:
-
-NEXT_PUBLIC_BASE_URL=http://localhost:3334
+- Testes Unitários
+- Testes de Integração
+- Mocks
